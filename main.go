@@ -14,16 +14,16 @@ import (
 //go:embed ui
 var f embed.FS
 
-type PreviewConfig struct {
+type WebTestConfig struct {
 }
 
-func (p *PreviewConfig) OnEvent(event any) {
+func (p *WebTestConfig) OnEvent(event any) {
 
 }
 
-var plugin = InstallPlugin(&PreviewConfig{})
+var plugin = InstallPlugin(&WebTestConfig{})
 
-func (p *PreviewConfig) ServeHTTP(w http.ResponseWriter, r *http.Request) {
+func (p *WebTestConfig) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	if r.URL.Path == "/webtest1/" {
 		Streams.Range(func(streamPath string, s *Stream) {
 			w.Write([]byte(fmt.Sprintf("<a href='%s'>%s</a><br>", streamPath, streamPath)))
